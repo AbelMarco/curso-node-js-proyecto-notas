@@ -1,8 +1,8 @@
 console.log("Modulo de notas")
 
-const addNote = (nota)=> {
+const addNote = (title,body)=> {
   console.log("Voy a añadir una nota")
-  console.log(nota) 
+  console.log(`${title} \n${body}`) 
 }
 
 const removeNote = (id) => {
@@ -15,7 +15,7 @@ const readNotes = (id) => {
   console.log(id)
 }
 
-const listNotes = (id) => {
+const listNotes = () => {
   console.log("Te voy a enseñar las notas que hay hasta ahora")
 }
 
