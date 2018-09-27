@@ -1,27 +1,43 @@
 console.log("Modulo de notas")
 
+const Note = {
+  title:"title",
+  body:"body",
+  Note: (title,body) => {
+    this.title=title
+    this.body=body
+  }
+}
+var devolver
+
 const addNote = (title,body)=> {
-  console.log("Voy a añadir una nota")
-  console.log(`${title} \n${body}`) 
+  var nota = Note.Note(title,body)
+  console.log(nota.title)
+  devolver = `He a añadido la nota con titulo: ${title}\ny cuerpo: ${body}`
+  return devolver
 }
 
-const removeNote = (id) => {
-  console.log("Voy a eliminar una nota")
-  console.log(id)
+const removeNote = (title) => {
+  
+  devolver = `Voy a eliminar la nota con titulo: ${title}`
+  return devolver
 }
 
-const readNotes = (id) => {
-  console.log("Te voy a enseñar las nota que has pedido")
-  console.log(id)
+const readNote = (title) => {
+  
+  devolver = `Voy a leer la nota con titulo: ${title}`
+  return devolver
 }
 
 const listNotes = () => {
-  console.log("Te voy a enseñar las notas que hay hasta ahora")
+  
+  devolver = `Voy a leer todas las notas`
+  return devolver
 }
 
 module.exports = {
   addNote,
   removeNote,
-  readNotes,
+  readNote,
   listNotes
 }
