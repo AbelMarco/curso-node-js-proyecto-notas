@@ -14,26 +14,50 @@ const addNote = (title,body)=> {
     title,
     body
   }
-  jsonNotes.push(note)
-  fs.writeFileSync('./src/notas.json', JSON.stringify(jsonNotes))
-  devolver = `He a añadido la nota con titulo: ${title}\ny cuerpo: ${body}`
+  const duplicado = jsonNotes.filter((notes) => notes.title === title)
+  if (!duplicado.length){
+    jsonNotes.push(note)
+    fs.writeFileSync('./src/notas.json', JSON.stringify(jsonNotes))
+    devolver = `He a añadido la nota con titulo: ${title}\ny cuerpo: ${body}`
+  } else {
+    devolver = `Ya existe una nota con el titulo: ${title}`
+  }
   return devolver
 }
 
 const removeNote = (title) => {
   
-  devolver = `Voy a eliminar la nota con titulo: ${title}`
+
+  const duplicado = jsonNotes.filter((notes) => notes.title !== title)
+  if (duplicado.length === jsonNotes.length){
+    devolver= `No existe nota con titulo ${title}`
+  } else {
+    fs.writeFileSync('./src/notas.json', JSON.stringify(duplicado))
+    devolver = `He eliminado la nota con titulo: ${title}`
+  }
+  
+  
+  
+  
   return devolver
 }
 
 const readNote = (title) => {
   
-  devolver = `Te he leido la nota con titulo: ${title}`
+  const duplicado = jsonNotes.filter((notes) => notes.title === title)
+  if (!duplicado.length){
+    devolver= `No existe nota con titulo ${title}`
+  } else {
+    for (var key in duplicado){
+      console.log (`Nota número: ${parseInt(key+1)}`)
+      console.log(`Titulo: ${duplicado[key].title}\ny Cuerpo: ${duplicado[key].body}`)
+    }
+    devolver = `Te he leido la nota con titulo: ${title}`
+  }
   return devolver
 }
 
 const listNotes = () => {
-  console.log(jsonNotes)
   for (var key in jsonNotes) {
     console.log(`Titulo: ${jsonNotes[key].title}\nCuerpo: ${jsonNotes[key].body}`)
   }
